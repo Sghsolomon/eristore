@@ -6,6 +6,7 @@ import Caravan from "../assets/image/rayban-3.jpg";
 export const Raybans = [
   {
     id: 0,
+    path: "Rayban",
     name: "Aviator",
     image: Aviator,
     rating: 4,
@@ -14,6 +15,7 @@ export const Raybans = [
   },
   {
     id: 1,
+    path: "Rayban",
     name: "Clubmaster",
     image: Clubmaster,
     rating: 5,
@@ -22,6 +24,7 @@ export const Raybans = [
   },
   {
     id: 2,
+    path: "rayban",
     name: "Wayfarer",
     image: Wayfarer,
     rating: 5,
@@ -30,6 +33,7 @@ export const Raybans = [
   },
   {
     id: 3,
+    path: "Rayban",
     name: "Caravan",
     image: Caravan,
     rating: 4,

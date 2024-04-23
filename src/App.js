@@ -1,11 +1,12 @@
 import "./App.css";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
-import NikeList from "./features/nikes/NikeList";
-import HugoList from "./features/hugos/HugoList";
-import RaybanList from "./features/raybans/RaybanList";
 import { Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
+import NikeDirectoryPage from "./pages/NikeDirectoryPage";
+import HugoDirectoryPage from "./pages/HugoDirectoryPage";
+import RaybanDirectoryPage from "./pages/RaybanDirectoryPage";
+import DetailPage from "./pages/DetailPage";
 
 function App() {
   return (
@@ -13,9 +14,12 @@ function App() {
       <Header></Header>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/nike" element={<NikeList />} />
-        <Route path="/hugo" element={<HugoList />} />
-        <Route path="/rayban" element={<RaybanList />} />
+        <Route path="/nike" element={<NikeDirectoryPage />} />
+        <Route path="/hugo" element={<HugoDirectoryPage />} />
+        <Route path="/rayban" element={<RaybanDirectoryPage />} />
+        <Route path="nike/:nikeId" element={<DetailPage />} />
+        <Route path="hugo/:hugoId" element={<DetailPage />} />
+        <Route path="rayban/:raybanId" element={<DetailPage />} />
       </Routes>
       <Footer></Footer>
     </div>

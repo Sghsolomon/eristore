@@ -10,3 +10,9 @@ export const selectOneHugo = () => {
     return hugo.id === selectOne;
   });
 };
+
+export const selectHugoById = (hugoId) => {
+  return Hugos.find((hugo) => {
+    return hugo.id === hugoId;
+  });
+};

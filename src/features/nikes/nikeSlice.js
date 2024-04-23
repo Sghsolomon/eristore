@@ -10,3 +10,9 @@ export const selectOneNike = () => {
     return nike.id === selectOne;
   });
 };
+
+export const selectNikeById = (nikeId) => {
+  return Nikes.find((nike) => {
+    return nike.id === nikeId;
+  });
+};

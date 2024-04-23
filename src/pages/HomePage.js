@@ -1,32 +1,12 @@
-import DisplayCard from "../features/display/DisplayCard";
-import { selectOneNike } from "../features/nikes/nikeSlice";
-import { selectOneHugo } from "../features/hugos/HugoSlice";
-import { selectOneRayban } from "../features/raybans/RaybanSlice";
-import { Row, Col } from "reactstrap";
-import Catagories from "../components/Catagories";
+import DisplayList from "../features/display/DisplayList";
+import SubHeader from "..//components/SubHeader";
 
 const HomePage = () => {
-  const items = [selectOneNike(), selectOneHugo(), selectOneRayban()];
-
+  let obj = { name: "Home" };
   return (
     <>
-      <Catagories></Catagories>
-      <Row>
-        {items.map((item, i) => {
-          return (
-            <Col
-              md="3"
-              className="m-5"
-              key={i}
-              onClick={() => {
-                console.log(item.id);
-              }}
-            >
-              <DisplayCard items={item}></DisplayCard>
-            </Col>
-          );
-        })}
-      </Row>
+      <SubHeader current={obj}></SubHeader>
+      <DisplayList></DisplayList>;
     </>
   );
 };

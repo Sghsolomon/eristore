@@ -6,6 +6,7 @@ import Versaceman from "../assets/image/hugo-3.webp";
 export const Hugos = [
   {
     id: 0,
+    path: "Hugo",
     name: "Hugo Versace",
     image: Hugoversace,
     rating: 4,
@@ -13,6 +14,7 @@ export const Hugos = [
   },
   {
     id: 1,
+    path: "Hugo",
     name: "Hugo Boss",
     image: Hugoboss,
     rating: 5,
@@ -20,6 +22,7 @@ export const Hugos = [
   },
   {
     id: 2,
+    path: "Hugo",
     name: "Cool Water",
     image: Coolwater,
     rating: 4,
@@ -27,6 +30,7 @@ export const Hugos = [
   },
   {
     id: 3,
+    path: "Hugo",
     name: "Versace Man",
     image: Versaceman,
     rating: 4,

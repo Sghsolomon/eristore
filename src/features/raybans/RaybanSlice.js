@@ -10,3 +10,9 @@ export const selectOneRayban = () => {
     return rayban.id === selectOne;
   });
 };
+
+export const selectRaybanById = (raybanId) => {
+  return Raybans.find((rayban) => {
+    return rayban.id === raybanId;
+  });
+};
