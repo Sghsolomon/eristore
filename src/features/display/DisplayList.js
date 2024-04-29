@@ -7,7 +7,7 @@ import DisplayCard from "./DisplayCard";
 
 const DisplayList = () => {
   const items = [selectOneNike(), selectOneHugo(), selectOneRayban()];
-  console.log(items);
+
   return (
     <>
       <Catagories></Catagories>
