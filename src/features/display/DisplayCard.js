@@ -1,16 +1,23 @@
-import { Card, CardImg, CardBody, CardTitle, CardText } from "reactstrap";
+import {
+  Card,
+  CardImg,
+  CardBody,
+  CardTitle,
+  CardText,
+  CardImgOverlay,
+} from "reactstrap";
 import { Link } from "react-router-dom";
 
 const DisplayCard = ({ item }) => {
-  const { image, id, desctiption, name, path } = item;
+  const { image, id, description, name, path } = item;
 
   return (
-    <Link to={path}>
-      <Card>
+    <Link to={id}>
+      <Card className="custom-color">
         <CardImg width="100%" src={image} alt={name} />
         <CardBody>
-          <CardTitle>{name}</CardTitle>
-          <CardText>{desctiption}</CardText>
+          <CardTitle>{description}</CardTitle>
+          <CardText>{name}</CardText>
         </CardBody>
       </Card>
     </Link>

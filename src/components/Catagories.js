@@ -11,16 +11,16 @@ import { Link } from "react-router-dom";
 
 const catagories = [
   {
-    name: "NIKE",
+    name: "All",
     path: "/nike",
   },
   {
-    name: "HUGO",
-    path: "/hugo",
+    name: "Men's",
+    path: "/men",
   },
   {
-    name: "RayBan",
-    path: "/rayban",
+    name: "Women's",
+    path: "/women",
   },
 ];
 

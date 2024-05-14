@@ -5,7 +5,7 @@ export const selectAllRayban = () => {
 };
 
 export const selectOneRayban = () => {
-  const selectOne = Math.floor(Math.random() * Raybans.length);
+  const selectOne = 3;
   return Raybans.find((rayban) => {
     return rayban.id === selectOne;
   });

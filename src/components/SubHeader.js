@@ -10,13 +10,10 @@ const SubHeader = ({ current, detail }) => {
             <Link to="/">Home</Link>
           </BreadcrumbItem>
           {detail && (
-            <BreadcrumbItem>
-              <Link to={`/${current.path}`}>{current.name}</Link>
+            <BreadcrumbItem active>
+              <Link to={`/${current.id}`}>{current.name}</Link>
             </BreadcrumbItem>
           )}
-          <BreadcrumbItem active>
-            {detail ? current.description : current.name}
-          </BreadcrumbItem>
         </Breadcrumb>
         <h2>{current.name}</h2>
         <hr />

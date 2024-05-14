@@ -3,6 +3,7 @@ import SubHeader from "..//components/SubHeader";
 
 const HomePage = () => {
   let obj = { name: "Home" };
+
   return (
     <>
       <SubHeader current={obj}></SubHeader>

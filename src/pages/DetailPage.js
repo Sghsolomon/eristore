@@ -1,36 +1,41 @@
 import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { selectNikeById } from "../features/nikes/nikeSlice";
-import { selectHugoById } from "../features/hugos/HugoSlice";
-import { selectRaybanById } from "../features/raybans/RaybanSlice";
-import { Row, Container } from "reactstrap";
+import { animated, useSpring } from "react-spring";
+import { Row, Col, Container } from "reactstrap";
 import DetailCard from "../features/display/DetailCard";
 import SubHeader from "../components/SubHeader";
+import DesctiptionCard from "../features/display/DescriptionCard";
+import { useEffect, useState } from "react";
 
 const DetailPage = () => {
+  const [toggle, setToggle] = useState(false);
   const item = useParams();
-  let itemId;
-  console.log(item.hasOwnProperty("nikeId"));
 
-  if (item.hasOwnProperty("nikeId")) {
-    const { nikeId } = item;
-    const nike = selectNikeById(parseInt(nikeId));
-    itemId = nike;
-  } else if (item.hasOwnProperty("hugoId")) {
-    const { hugoId } = item;
-    const hugo = selectHugoById(parseInt(hugoId));
-    itemId = hugo;
-  } else if (item.hasOwnProperty("raybanId")) {
-    const { raybanId } = item;
-    const rayban = selectRaybanById(parseInt(raybanId));
-    itemId = rayban;
-  }
-  console.log(itemId);
+  useEffect(() => {
+    setToggle(true);
+  }, [toggle]);
+
+  let itemId;
+  const { nikeId } = item;
+
+  itemId = useSelector(selectNikeById(nikeId));
+
+  const animatedStyle = useSpring({
+    opacity: toggle ? 1 : 0,
+    transform: toggle ? "scale(1,1)" : "scale(0,1)",
+    config: { duration: 1000 },
+  });
+
   return (
     <Container>
-      <Row>
-        <SubHeader current={itemId} detail="true" />
-        <DetailCard item={itemId}></DetailCard>
-      </Row>
+      <SubHeader current={itemId} detail="true" />
+      <animated.div style={animatedStyle}>
+        <Row>
+          <DetailCard item={itemId}></DetailCard>
+          <DesctiptionCard></DesctiptionCard>
+        </Row>
+      </animated.div>
     </Container>
   );
 };

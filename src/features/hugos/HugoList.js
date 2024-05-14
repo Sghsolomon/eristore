@@ -1,9 +1,9 @@
-import { selectAllHugo } from "./HugoSlice";
+import { selectAllSneaker } from "./HugoSlice";
 import HugoCard from "./HugoCard";
 import { Row, Col } from "reactstrap";
 
 const HugoList = () => {
-  const hugos = selectAllHugo();
+  const hugos = selectAllSneaker();
   return (
     <Row className="ms-auto">
       {hugos.map((hugo) => {
