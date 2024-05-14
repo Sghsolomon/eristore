@@ -11,14 +11,12 @@ import { Link } from "react-router-dom";
 const NikeCard = ({ nike }) => {
   const { image, name, description, rating, id } = nike;
   return (
-    <Link to={`${id}`}>
-      <Card>
+    <Link to={id}>
+      <Card className="custom-color">
         <CardImg width="100%" src={image} alt={name} />
         <CardBody>
-          <CardImgOverlay>
-            <CardTitle>{name}</CardTitle>
-          </CardImgOverlay>
-          <CardText>{description}</CardText>
+          <CardTitle>{description}</CardTitle>
+          <CardText>{name}</CardText>
         </CardBody>
       </Card>
     </Link>

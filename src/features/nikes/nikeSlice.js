@@ -61,6 +61,7 @@ export const selectAllNike = (state) => {
           image: item.node.media.smallImageUrl,
           rating: 3,
           description: item.node.model,
+          node: item.node,
         };
       })
     : "";

@@ -1,10 +1,10 @@
 import SubHeader from "../components/SubHeader";
 import NikeList from "../features/nikes/NikeList";
-import { Container } from "reactstrap";
 
-const NikeDirectoryPage = () => {
+const NikeMenPage = () => {
   let obj = { name: "Nike" };
-  let selectedList = "allGender";
+  const selectedList = "men";
+  console.log(selectedList);
   return (
     <>
       <SubHeader current={obj} />
@@ -13,4 +13,4 @@ const NikeDirectoryPage = () => {
   );
 };
 
-export default NikeDirectoryPage;
+export default NikeMenPage;

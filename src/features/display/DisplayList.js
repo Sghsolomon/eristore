@@ -34,7 +34,7 @@ const DisplayList = () => {
       <Row>
         {transitions((style, item) => {
           return item ? (
-            <Col md={{ size: 3, offset: 1 }}>
+            <Col md={{ size: 2, offset: 1 }}>
               <animated.div style={style}>
                 <DisplayCard item={item}></DisplayCard>
               </animated.div>
