@@ -4,7 +4,7 @@ import NikeList from "../features/nikes/NikeList";
 import { Row, Col } from "reactstrap";
 
 const NikeWomenPage = () => {
-  let obj = { name: "Nike" };
+  let obj = { name: "Women" };
   const selectedList = "women";
   return (
     <>

@@ -2,7 +2,7 @@ import SubHeader from "../components/SubHeader";
 import NikeList from "../features/nikes/NikeList";
 
 const NikeMenPage = () => {
-  let obj = { name: "Nike" };
+  let obj = { name: "Men" };
   const selectedList = "men";
   console.log(selectedList);
   return (
