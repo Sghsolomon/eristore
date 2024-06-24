@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { addUser, selectCurrentUser } from "./userSlice";
 
@@ -27,13 +27,14 @@ const UserLoginForm = () => {
       username: values.username,
       password: values.password,
     };
+
     dispatch(addUser(user));
     setLoginModalOpen(false);
   };
 
   return (
     <>
-      <span className="navbar-text ml-auto">
+      <span className="navbar-text ml-auto me-4">
         {user ? (
           <div style={{ width: "3rem", height: "3rem" }}>
             <img

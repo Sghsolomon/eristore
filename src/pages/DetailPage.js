@@ -41,3 +41,15 @@ const DetailPage = () => {
 };
 
 export default DetailPage;
+
+// return (
+//   <Container>
+//     <SubHeader current={itemId} detail="true" />
+//     <animated.div style={animatedStyle}>
+//       <Row>
+//         <DetailCard item={itemId}></DetailCard>
+//         <DesctiptionCard></DesctiptionCard>
+//       </Row>
+//     </animated.div>
+//   </Container>
+// );

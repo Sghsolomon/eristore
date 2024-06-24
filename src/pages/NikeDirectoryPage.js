@@ -3,7 +3,7 @@ import NikeList from "../features/nikes/NikeList";
 import { Container } from "reactstrap";
 
 const NikeDirectoryPage = () => {
-  let obj = { name: "All" };
+  let obj = { name: "All-Gender" };
   let selectedList = "allGender";
   return (
     <>

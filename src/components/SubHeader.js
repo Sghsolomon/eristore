@@ -10,13 +10,13 @@ const SubHeader = ({ current, detail }) => {
             <Link to="/">Home</Link>
           </BreadcrumbItem>
           <BreadcrumbItem>
+            <Link to="/nike">All-Gender</Link>
+          </BreadcrumbItem>
+          <BreadcrumbItem>
             <Link to="/men">Men</Link>
           </BreadcrumbItem>
           <BreadcrumbItem>
             <Link to="/women">Women</Link>
-          </BreadcrumbItem>
-          <BreadcrumbItem>
-            <Link to="/nike">All</Link>
           </BreadcrumbItem>
           {detail && (
             <BreadcrumbItem active>
