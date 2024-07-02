@@ -30,6 +30,7 @@ function App() {
         <Route path="contact" element={<ContactPage />} />
         <Route path="men" element={<NikeMenPage />} />
         <Route path="women" element={<NikeWomenPage />} />
+        <Route path="/:nikeId" element={<DetailPage />} />
         <Route path="nike/:nikeId" element={<DetailPage />} />
         <Route path="men/:nikeId" element={<DetailPage />} />
         <Route path="women/:nikeId" element={<DetailPage />} />

@@ -29,7 +29,7 @@ const Catagories = () => {
     <Row className="mb-5">
       <Col md={{ size: 2, offset: 5 }}>
         <h1>Our Collection</h1>
-        <UncontrolledDropdown group>
+        <UncontrolledDropdown group className="ms-5">
           <Button color="primary">SELECT</Button>
           <DropdownToggle caret color="primary" />
           <DropdownMenu>

@@ -99,8 +99,8 @@ export const selectSampleNike = (state) => {
 };
 
 export const selectOneNike = (state) => {
-  let item = state.nikes.nikeArray;
-  const index = Math.floor(Math.random() * item.length());
+  const item = state.nikes.nikeArray;
+  const index = Math.floor(Math.random() * item.length);
   let stateItem = item[index];
 
   return stateItem

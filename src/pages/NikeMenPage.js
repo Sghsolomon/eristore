@@ -1,3 +1,4 @@
+import Catagories from "../components/Catagories";
 import SubHeader from "../components/SubHeader";
 import NikeList from "../features/nikes/NikeList";
 
@@ -7,8 +8,9 @@ const NikeMenPage = () => {
   console.log(selectedList);
   return (
     <>
-      <SubHeader current={obj} />
-      <NikeList item={selectedList} />;
+      <Catagories></Catagories>
+      <SubHeader detail={true} current={obj} />
+      <NikeList gender={selectedList} />;
     </>
   );
 };

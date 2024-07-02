@@ -9,18 +9,10 @@ const SubHeader = ({ current, detail }) => {
           <BreadcrumbItem>
             <Link to="/">Home</Link>
           </BreadcrumbItem>
-          <BreadcrumbItem>
-            <Link to="/nike">All-Gender</Link>
-          </BreadcrumbItem>
-          <BreadcrumbItem>
-            <Link to="/men">Men</Link>
-          </BreadcrumbItem>
-          <BreadcrumbItem>
-            <Link to="/women">Women</Link>
-          </BreadcrumbItem>
+
           {detail && (
             <BreadcrumbItem active>
-              <Link to={`/${current.id}`}>{current.name}</Link>
+              <Link to={`/${current.name}`}>{current.name}</Link>
             </BreadcrumbItem>
           )}
         </Breadcrumb>
@@ -32,3 +24,13 @@ const SubHeader = ({ current, detail }) => {
 };
 
 export default SubHeader;
+
+//  <BreadcrumbItem>
+//   <Link to="/nike">All-Gender</Link>
+// </BreadcrumbItem>
+// <BreadcrumbItem>
+//   <Link to="/men">Men</Link>
+// </BreadcrumbItem>
+// <BreadcrumbItem>
+//   <Link to="/women">Women</Link>
+// </BreadcrumbItem>

@@ -3,16 +3,16 @@ import NikeCard from "./NikeCard";
 import { selectAllNike } from "./nikeSlice";
 import { Col, Row } from "reactstrap";
 
-const NikeList = ({ item }) => {
+const NikeList = ({ gender }) => {
   const items = useSelector(selectAllNike);
   let womens = items.filter((item) => {
-    return item.node.gender === "women";
+    return item.node.gender === gender;
   });
   let mens = items.filter((item) => {
-    return item.node.gender === "men";
+    return item.node.gender === gender;
   });
 
-  if (item === "allGender") {
+  if (gender === "allGender") {
     return (
       <Row xs="5" className="mb-5">
         {items.map((nike) => {
@@ -24,7 +24,7 @@ const NikeList = ({ item }) => {
         })}
       </Row>
     );
-  } else if (item === "men") {
+  } else if (gender === "men") {
     return (
       <Row xs="5" className="mb-5">
         {mens.map((nike) => {
@@ -36,7 +36,7 @@ const NikeList = ({ item }) => {
         })}
       </Row>
     );
-  } else if (item === "women") {
+  } else if (gender === "women") {
     return (
       <Row xs="5" className="mb-5">
         {womens.map((nike) => {

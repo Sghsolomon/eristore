@@ -10,17 +10,17 @@ import { useEffect, useState } from "react";
 
 const DetailPage = () => {
   const [toggle, setToggle] = useState(false);
-  const item = useParams();
+  //const item = useParams();
+  const { nikeId } = useParams();
 
   useEffect(() => {
     setToggle(true);
   }, [toggle]);
 
   let itemId;
-  const { nikeId } = item;
 
   itemId = useSelector(selectNikeById(nikeId));
-
+  console.log("itemid", itemId);
   const animatedStyle = useSpring({
     opacity: toggle ? 1 : 0,
     transform: toggle ? "scale(1,1)" : "scale(0,1)",
@@ -29,7 +29,7 @@ const DetailPage = () => {
 
   return (
     <Container>
-      <SubHeader current={itemId} detail="true" />
+      <SubHeader current={itemId} detail={true} />
       <animated.div style={animatedStyle}>
         <Row>
           <DetailCard item={itemId}></DetailCard>
