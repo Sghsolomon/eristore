@@ -3,9 +3,10 @@ import SubHeader from "../components/SubHeader";
 import ContactForm from "../components/ContactForm";
 
 const ContactPage = () => {
+  const current = { name: "Contact Us" };
   return (
     <Container>
-      <SubHeader current="Contact Us"></SubHeader>
+      <SubHeader current={current}></SubHeader>
       <Row className="row-content align-items-center">
         <Col sm="4">
           <h5>Our Address</h5>
