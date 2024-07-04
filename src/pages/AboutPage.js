@@ -1,4 +1,4 @@
-import { Row, Col, Container } from "reactstrap";
+import { Row, Col } from "reactstrap";
 import { selectSampleNike } from "../features/nikes/nikeSlice";
 import { useSelector } from "react-redux";
 import DetailCard from "../features/display/DetailCard";
@@ -9,6 +9,8 @@ import {
   useSpring,
 } from "@react-spring/web";
 import { useLayoutEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import estore from "../app/assets/image/estore.jpg";
 
 const AboutPage = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -59,45 +61,31 @@ const AboutPage = () => {
     springApi.start();
   }, [activeIndex]);
 
-  // useEffect(() => {
-  //   const increment = () =>
-  //     setIndex((index) => (index + 1) % sampleNike.length);
-
-  //   const intervalId = setInterval(increment, 2000);
-
-  //   return () => {
-  //     clearInterval(intervalId);
-  //   };
-  // }, []);
-
-  // const transitions = useTransition(sampleNike[index], {
-  //   from: { opacity: 0, transform: "translate3d(-100%, 0,0)" },
-  //   enter: { opacity: 1, transform: "translate3d(0%, 0,0)" },
-  //   leave: { opacity: 0, transform: "translate3d(100%, 0,0)" },
-  // from: { x: -500, y: 0, opacity: 0, transform: "scale(0)" },
-  // enter: { x: 0, y: 0, opacity: 1, transform: "scale(1)" },
-  // leave: { x: 500, y: 0, opacity: 1, transform: "scale(0)" },
-  //   exitBeforeEnter: true,
-  //   config: { duration: 2000 },
-  // });
-
   return (
-    <Container>
+    <div>
+      <Row>
+        <p className="ms-5">
+          <Link className="link-danger" to="/">
+            Eristore
+          </Link>{" "}
+          &gt; Who We Are
+        </p>
+        <img src={estore} alt="eirstore" className="img" />
+      </Row>
       <Row className="row-content">
-        <Col md="5" className="ms-4">
-          <h1>About Us</h1>
+        <Col md="4" className="m-5">
+          <h1>Who We Are</h1>
           <p>
             Eri Store, Inc. is a leading footwear and apparel retailer that
-            unlocks the “inner sneakerhead” in all of us. With approximately
-            2,500 retail stores in 26 countries across North America, Europe,
-            Asia, Australia, and New Zealand, and a licensed store presence in
-            the Middle East and Asia, Eri Store, Inc. has a strong history of
-            sneaker authority that sparks discovery and ignites the power of
-            sneaker culture through its portfolio of brands, including Nike,
-            Kids Eri Store, Champs Sports, WSS, and atmos.{" "}
+            unlocks the “inner sneakerhead” in all of us. With approximately 3
+            retail stores in 3 states across north America and a licensed store
+            presence in the Middle East and Asia, Eri Store, Inc. has a strong
+            history of sneaker authority that sparks discovery and ignites the
+            power of sneaker culture through its portfolio of brands, including
+            Nike, Kids Eri Store, Champs Sports, WSS, and atmos.{" "}
           </p>
         </Col>
-        <Col md="6" className="ms-4">
+        <Col md="6">
           {transitions((springs, item) => {
             return (
               <animated.div style={springs}>
@@ -107,9 +95,11 @@ const AboutPage = () => {
           })}
         </Col>
       </Row>
-    </Container>
+    </div>
   );
 };
+
+//http://www.gettyimages.com/detail/1243961434' target='_blank' style='color:#a7a7a7;text-decoration:none;font-weight:normal !important;border:none;display:inline-block
 
 export default AboutPage;
 

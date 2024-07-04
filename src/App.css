@@ -82,3 +82,8 @@ h2 {
 .custom-color {
   background: #37c6c7 !important;
 }
+
+.img {
+  width: 100%;
+  height: 550px;
+}
