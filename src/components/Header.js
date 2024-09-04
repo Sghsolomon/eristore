@@ -6,13 +6,53 @@ import {
   NavbarToggler,
   Nav,
   NavItem,
+  Button,
 } from "reactstrap";
 import { NavLink } from "react-router-dom";
 import eristore from "../app/assets/image/eristore.jpg";
 import UserLoginForm from "../features/user/UserLoginForm";
+import UserSignupForm from "../features/user/userSignupForm";
+import UserAvatar from "../features/user/UserAvatar";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  isAuthenticated,
+  userLogout,
+  validateLogin,
+} from "../features/user/userSlice";
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const auth = useSelector(isAuthenticated);
+  const user = useSelector((state) => state.user.currentUser);
+  const dispatch = useDispatch();
+
+  const userOptions = auth ? (
+    <>
+      <span className="navbar-text ml-auto">
+        <Button
+          outline
+          onClick={() => dispatch(userLogout())}
+          style={{
+            color: "white",
+            border: "1px solid white",
+            margin: "5px",
+          }}
+        >
+          <i className="fa fa-sign-out fa-lg" /> Logout
+        </Button>
+      </span>
+      <div className="mr-3">
+        <UserAvatar />
+        <span className="text-info">{user}</span>
+      </div>
+    </>
+  ) : (
+    <>
+      <UserLoginForm />
+      <UserSignupForm />
+    </>
+  );
 
   return (
     <>
@@ -42,7 +82,7 @@ function Header() {
             </NavItem>
           </Nav>
         </Collapse>
-        <UserLoginForm></UserLoginForm>
+        {userOptions}
       </Navbar>
     </>
   );

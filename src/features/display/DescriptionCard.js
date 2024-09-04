@@ -17,9 +17,9 @@ const DesctiptionCard = () => {
   const item = useParams();
   const { nikeId } = item;
   let itemId = useSelector(selectNikeById(nikeId));
+  console.log("itemId", itemId);
   const items = itemId.node;
   const sizes = [9, 9.5, 10, 10.5, 11];
-  console.log("ItemId ", itemId.node);
   return (
     <Col md={{ size: 5 }}>
       <Card>
@@ -46,8 +46,8 @@ const DesctiptionCard = () => {
                 <Button className="bg-primary ms-1">SIZE</Button>
                 <DropdownToggle caret color="primary" />
                 <DropdownMenu>
-                  {sizes.map((size) => {
-                    return <DropdownItem>{size}</DropdownItem>;
+                  {sizes.map((size, i) => {
+                    return <DropdownItem key={i}>{size}</DropdownItem>;
                   })}
                 </DropdownMenu>
               </UncontrolledDropdown>

@@ -1,7 +1,14 @@
-export const ValidateUser = (values) => {
+export const validateSignupForm = (values) => {
   var regularExpression =
     /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
   const errors = {};
+
+  if (!values.firstname) {
+    errors.firstname = "Required";
+  }
+  if (!values.lastname) {
+    errors.lastname = "Required";
+  }
   if (!values.username) {
     errors.username = "Required";
   } else if (values.username.length < 3) {
