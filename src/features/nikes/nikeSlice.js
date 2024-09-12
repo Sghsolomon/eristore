@@ -1,9 +1,6 @@
-//import { Nikes } from "../../app/shared/NIKE";
-
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { baseUrl } from "../../app/shared/baseUrl";
 
-//const url = "https://sneaker-db-stockx-light-version.p.rapidapi.com/relatedProducts?urlKey=air-jordan-1-high-zoom-air-cmft-2-honeydew";
-const url = "http://localhost:3000/nike";
 const options = {
   method: "GET",
   headers: {
@@ -13,7 +10,7 @@ const options = {
 };
 
 export const fetchNike = createAsyncThunk("nikes/fetchnike", async () => {
-  const response = await fetch(url, options);
+  const response = await fetch(baseUrl + "nikes/", options);
   if (!response.ok) {
     return Promise.reject("Unable to fetch data " + response.status);
   }
@@ -21,6 +18,36 @@ export const fetchNike = createAsyncThunk("nikes/fetchnike", async () => {
   console.log(data);
   return data;
 });
+
+export const postComment = createAsyncThunk(
+  "nikes/postComment",
+  async (comment) => {
+    console.log("comment post", comment);
+    const bearer = "Bearer " + localStorage.getItem("token");
+
+    const response = await fetch(
+      baseUrl + "nikes/" + comment.nikeId + "/comments",
+
+      {
+        method: "POST",
+        headers: {
+          Authorization: bearer,
+          "Content-Type": "application/json",
+        },
+        credentials: "same-origin",
+        body: JSON.stringify(comment),
+      }
+    );
+    if (!response.ok) {
+      return Promise.reject(response.status);
+    }
+    let data = await response.json();
+    // Add campsiteId to returned comment data for storing in application state
+    data = { ...data, nikeId: comment.nikeId };
+    console.log("data response ", data);
+    return data;
+  }
+);
 
 const initialState = {
   nikeArray: [],
@@ -44,6 +71,25 @@ const nikeSlice = createSlice({
     [fetchNike.rejected]: (state, action) => {
       state.isLoading = false;
       state.errMsg = action.error ? action.error.message : "Fetch failed";
+    },
+    [postComment.fulfilled]: (state, action) => {
+      const newComment = action.payload.comment;
+      const nikeId = action.payload.nikeId;
+      newComment.author = action.payload.author;
+      const nikeIdx = state.nikeArray.findIndex((nike) => {
+        return nike._id === nikeId;
+      });
+      if (nikeIdx === -1) {
+        console.log(`Campsite id of ${nikeIdx} not found, cannot add comment.`);
+        return;
+      }
+      state.nikeArray[nikeIdx].comments.push(newComment);
+    },
+    [postComment.rejected]: (state, action) => {
+      alert(
+        "Your comment could not be posted\nError: " +
+          (action.error ? action.error.message : "post failed")
+      );
     },
   },
 });
@@ -75,7 +121,7 @@ export const selectSampleNike = (state) => {
   const result = items
     ? items.map((item) => {
         return {
-          id: item.node.id,
+          id: item._id,
           path: "nike",
           name: item.node.name,
           image: item.node.media.smallImageUrl,
@@ -85,17 +131,6 @@ export const selectSampleNike = (state) => {
       })
     : "";
   return result.slice(0, 3);
-
-  // return stateItem
-  //   ? {
-  //       id: stateItem.node.id,
-  //       path: "nike",
-  //       name: stateItem.node.primaryCategory,
-  //       image: stateItem.node.media.smallImageUrl,
-  //       rating: 3,
-  //       description: stateItem.node.model,
-  //     }
-  //   : null;
 };
 
 export const selectOneNike = (state) => {
@@ -116,13 +151,11 @@ export const selectOneNike = (state) => {
 };
 
 export const selectNikeById = (id) => (state) => {
-  const item = state.nikes.nikeArray.find((nike) => nike.node.id === id);
-
-  console.log(item);
+  const item = state.nikes.nikeArray.find((nike) => nike._id === id);
 
   const result = item
     ? {
-        id: item.node.id,
+        id: item._id,
         path: "nike",
         name: item.node.name,
         image: item.node.media.smallImageUrl,
@@ -133,4 +166,13 @@ export const selectNikeById = (id) => (state) => {
     : "";
 
   return result;
+};
+
+// Comments by nike object
+export const selectCommentsByNikeId = (nikeId) => (state) => {
+  const nike = state.nikes.nikeArray.find((nike) => {
+    return nike._id === nikeId;
+  });
+
+  return nike.comments;
 };

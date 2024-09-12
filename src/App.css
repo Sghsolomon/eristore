@@ -87,3 +87,29 @@ h2 {
   width: 100%;
   height: 550px;
 }
+
+.star {
+  font-size: 1.5rem;
+  color: gold;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.on .star {
+  color: gold;
+}
+
+.off .star {
+  color: grey;
+}
+
+.scrollable-row {
+  height: 200px; /* Set the fixed height */
+  overflow-y: scroll; /* Enable vertical scrolling */
+  border: 1px solid #ccc;
+  padding: 10px;
+}

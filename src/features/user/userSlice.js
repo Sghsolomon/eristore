@@ -38,7 +38,6 @@ export const userLogin = createAsyncThunk(
     }
 
     const data = await response.json();
-    console.log("data", data);
     dispatch(setCurrentUser(data));
     return data;
   }
@@ -155,7 +154,8 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     setCurrentUser: (state, action) => {
-      state.currentUser = action.payload.user;
+      state.currentUser = action.payload.firstName;
+      state.currentUserId = action.payload.id;
     },
     clearCurrentUser: (state) => {
       state.isAuthenticated = false;

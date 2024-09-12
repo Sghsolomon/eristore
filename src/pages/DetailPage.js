@@ -6,6 +6,7 @@ import { Row, Col, Container } from "reactstrap";
 import DetailCard from "../features/display/DetailCard";
 import SubHeader from "../components/SubHeader";
 import DesctiptionCard from "../features/display/DescriptionCard";
+import CommentsList from "../features/comments/CommenstList";
 import { useEffect, useState } from "react";
 
 const DetailPage = () => {

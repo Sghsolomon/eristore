@@ -12,6 +12,7 @@ import {
 import { useParams } from "react-router-dom";
 import { selectNikeById } from "../nikes/nikeSlice";
 import { useSelector } from "react-redux";
+import CommentForm from "../comments/CommentForm";
 
 const DesctiptionCard = () => {
   const item = useParams();
@@ -21,13 +22,18 @@ const DesctiptionCard = () => {
   const items = itemId.node;
   const sizes = [9, 9.5, 10, 10.5, 11];
   return (
-    <Col md={{ size: 5 }}>
+    <Col md={{ size: 6 }}>
       <Card>
         <CardHeader className="bg-success">
           <h3>{itemId && items.model}</h3>
         </CardHeader>
         <CardBody>
           <dl className="row">
+            <dt className="col-4">Brand: {itemId && items.brand}</dt>
+            <dd className="col-8">
+              <CommentForm nikeId={nikeId}></CommentForm>
+            </dd>
+
             <dt>
               {itemId &&
                 `${items.gender[0].toUpperCase() + items.gender.slice(1)}'s`}
@@ -53,7 +59,7 @@ const DesctiptionCard = () => {
               </UncontrolledDropdown>
             </dd>
             <dt>
-              <Button color="dark">ADD TO CART</Button>
+              <Button className="btn btn-dark">ADD TO CART</Button>
             </dt>
           </dl>
         </CardBody>
@@ -63,53 +69,3 @@ const DesctiptionCard = () => {
 };
 
 export default DesctiptionCard;
-
-/*<Col md={{ size: 4 }}>
-<table className="table table-borderless">
-  <thead>
-    <tr>
-      <th colspan="5" scope="col">
-        {itemId && items.model}
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th colspan="5" scope="row">
-        {itemId &&
-          `${items.gender[0].toUpperCase() + items.gender.slice(1)}'s`}
-      </th>
-    </tr>
-    <tr>
-      <th colspan="5" scope="row">
-        {itemId && `$${items.market.state.highestBid.amount}.00`}
-      </th>
-    </tr>
-    <tr>
-      <th colSpan="5" scope="row">
-        This items ships free <i className="fa fa-truck" />
-      </th>
-    </tr>
-    <tr>
-      <th scope="row">Size:</th>
-      <td>Please select</td>
-      <td>
-        <UncontrolledDropdown group>
-          <Button color="primary">SIZE</Button>
-          <DropdownToggle caret color="primary" />
-          <DropdownMenu>
-            {sizes.map((size) => {
-              return <DropdownItem>{size}</DropdownItem>;
-            })}
-          </DropdownMenu>
-        </UncontrolledDropdown>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <Button color="dark">ADD TO CART</Button>
-      </td>
-    </tr>
-  </tbody>
-</table>
-</Col>*/
