@@ -3,13 +3,14 @@ import { formatDate } from "../../utils/formatDate";
 import StarRating from "../rating/Rating";
 import { Col } from "reactstrap";
 
-const Comment = ({ comment, userName }) => {
+const Comment = ({ comment }) => {
   const { text: commentText, rating, author, createdAt: date } = comment;
   const reviewObj = { averageRating: rating };
-  console.log("username", userName);
+  const user = comment.author.username;
+  console.log("comment", comment);
   return (
     <div>
-      <i className="fa fa-user mr-3 p-1" aria-hidden="true"></i> {userName}
+      <i className="fa fa-user mr-3 p-1" aria-hidden="true"></i> {user}
       <br />
       <StarRating review={reviewObj} />
       <br />

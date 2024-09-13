@@ -18,7 +18,7 @@ const DesctiptionCard = () => {
   const item = useParams();
   const { nikeId } = item;
   let itemId = useSelector(selectNikeById(nikeId));
-  console.log("itemId", itemId);
+
   const items = itemId.node;
   const sizes = [9, 9.5, 10, 10.5, 11];
   return (

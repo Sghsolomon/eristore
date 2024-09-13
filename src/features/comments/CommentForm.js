@@ -44,8 +44,7 @@ const CommentForm = ({ nikeId }) => {
   return (
     <div className="mt-3">
       {comments && comments.length > 0 ? (
-        <button
-          outline
+        <div
           onClick={() => {
             if (auth) {
               setModalOpen(true);
@@ -57,10 +56,10 @@ const CommentForm = ({ nikeId }) => {
           }}
         >
           <CommentsReview nikeId={nikeId} />
-        </button>
+        </div>
       ) : (
         <div className="mt-3">
-          <Button outline onClick={() => setSecondModalOpen(true)}>
+          <button onClick={() => setSecondModalOpen(true)}>
             <div>
               {[...Array(5)].map((star, index) => {
                 index += 1;
@@ -78,7 +77,7 @@ const CommentForm = ({ nikeId }) => {
                 );
               })}
             </div>
-          </Button>
+          </button>
           <Modal isOpen={secondModalOpen}>
             <ModalHeader toggle={() => setSecondModalOpen(false)}>
               Add Review
@@ -118,7 +117,7 @@ const CommentForm = ({ nikeId }) => {
         <ModalBody>
           <CommentsList nikeId={nikeId}></CommentsList>
           <div className="mt-3">
-            <Button outline onClick={() => setSecondModalOpen(true)}>
+            <Button onClick={() => setSecondModalOpen(true)}>
               <i className="fa fa-pencil fa-lg" /> Add a review
             </Button>
             <Modal isOpen={secondModalOpen}>

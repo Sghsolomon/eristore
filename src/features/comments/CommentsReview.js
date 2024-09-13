@@ -7,7 +7,7 @@ import StarRating from "../rating/Rating";
 const CommentsReview = ({ nikeId }) => {
   const comments = useSelector(selectCommentsByNikeId(nikeId));
   const auth = useSelector(isAuthenticated);
-  console.log("comments on Revies", comments);
+
   let pageContent = <></>;
   let totalRate = 0;
   let arrayLength = comments.length;
@@ -22,7 +22,7 @@ const CommentsReview = ({ nikeId }) => {
         totalRate += comment.rating;
       });
     }
-    console.log("review Obj", reviewObj, "total rating", totalRate);
+
     reviewObj.arrayLength = arrayLength;
     reviewObj.averageRating = totalRate / arrayLength;
 

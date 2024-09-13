@@ -14,11 +14,7 @@ import UserLoginForm from "../features/user/UserLoginForm";
 import UserSignupForm from "../features/user/userSignupForm";
 import UserAvatar from "../features/user/UserAvatar";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  isAuthenticated,
-  userLogout,
-  validateLogin,
-} from "../features/user/userSlice";
+import { isAuthenticated, userLogout } from "../features/user/userSlice";
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -42,7 +38,7 @@ function Header() {
           <i className="fa fa-sign-out fa-lg" /> Logout
         </Button>
       </span>
-      <div className="mr-3">
+      <div className="mr-3 text-center rounded">
         <UserAvatar />
         <span className="text-info">{user}</span>
       </div>
