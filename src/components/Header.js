@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Navbar,
   NavbarBrand,
@@ -14,14 +14,37 @@ import UserLoginForm from "../features/user/UserLoginForm";
 import UserSignupForm from "../features/user/userSignupForm";
 import UserAvatar from "../features/user/UserAvatar";
 import { useSelector, useDispatch } from "react-redux";
-import { isAuthenticated, userLogout } from "../features/user/userSlice";
+import {
+  isAuthenticated,
+  userLogout,
+  validateLogin,
+} from "../features/user/userSlice";
+import { jwtDecode } from "jwt-decode";
+import { clearCurrentUser } from "../features/user/userSlice";
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
-
+  const [jwtValidity, setJwtValidity] = useState(false);
   const auth = useSelector(isAuthenticated);
   const user = useSelector((state) => state.user.currentUser);
   const dispatch = useDispatch();
+
+  const token = localStorage.getItem("token");
+  console.log("token", token);
+  if (token) {
+    const checkToken = setInterval(() => {
+      const decodedToken = jwtDecode(token);
+      if (decodedToken.exp * 1000 <= Date.now()) {
+        dispatch(clearCurrentUser());
+        setJwtValidity(true);
+        clearInterval(checkToken);
+      }
+    }, 3600000);
+  }
+
+  useEffect(() => {
+    dispatch(validateLogin());
+  }, [dispatch, jwtValidity]);
 
   const userOptions = auth ? (
     <>

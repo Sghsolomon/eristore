@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectNikeById } from "../features/nikes/nikeSlice";
+import ValidateToken from "../utils/validateToken";
 import { animated, useSpring } from "react-spring";
 import { Row, Col, Container } from "reactstrap";
 import DetailCard from "../features/display/DetailCard";
@@ -10,6 +11,7 @@ import CommentsList from "../features/comments/CommenstList";
 import { useEffect, useState } from "react";
 
 const DetailPage = () => {
+  ValidateToken();
   const [toggle, setToggle] = useState(false);
   //const item = useParams();
   const { nikeId } = useParams();

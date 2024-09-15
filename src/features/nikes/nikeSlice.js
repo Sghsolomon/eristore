@@ -1,16 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { baseUrl } from "../../app/shared/baseUrl";
 
-const options = {
-  method: "GET",
-  headers: {
-    "X-RapidAPI-Key": "6e02c900a5mshc0506a40ea670bbp156b17jsn3411a2d02051",
-    "X-RapidAPI-Host": "sneaker-db-stockx-light-version.p.rapidapi.com",
-  },
-};
-
 export const fetchNike = createAsyncThunk("nikes/fetchnike", async () => {
-  const response = await fetch(baseUrl + "nikes/", options);
+  const response = await fetch(baseUrl + "nikes/");
   if (!response.ok) {
     return Promise.reject("Unable to fetch data " + response.status);
   }
@@ -22,7 +14,6 @@ export const fetchNike = createAsyncThunk("nikes/fetchnike", async () => {
 export const postComment = createAsyncThunk(
   "nikes/postComment",
   async (comment) => {
-    console.log("comment post", comment);
     const bearer = "Bearer " + localStorage.getItem("token");
 
     const response = await fetch(

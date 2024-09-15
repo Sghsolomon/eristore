@@ -59,7 +59,15 @@ const CommentForm = ({ nikeId }) => {
         </div>
       ) : (
         <div className="mt-3">
-          <button onClick={() => setSecondModalOpen(true)}>
+          <div
+            onClick={() => {
+              if (auth) {
+                setSecondModalOpen(true);
+              } else {
+                notify();
+              }
+            }}
+          >
             <div>
               {[...Array(5)].map((star, index) => {
                 index += 1;
@@ -68,7 +76,11 @@ const CommentForm = ({ nikeId }) => {
                     type="button"
                     key={index}
                     className={index <= (hover || rating) ? "on" : "off"}
-                    onClick={() => setRating(index)}
+                    onClick={() => {
+                      if (auth) {
+                        setRating(index);
+                      }
+                    }}
                     onMouseEnter={() => setHover(index)}
                     onMouseLeave={() => setHover(rating)}
                   >
@@ -77,7 +89,7 @@ const CommentForm = ({ nikeId }) => {
                 );
               })}
             </div>
-          </button>
+          </div>
           <Modal isOpen={secondModalOpen}>
             <ModalHeader toggle={() => setSecondModalOpen(false)}>
               Add Review
@@ -117,7 +129,10 @@ const CommentForm = ({ nikeId }) => {
         <ModalBody>
           <CommentsList nikeId={nikeId}></CommentsList>
           <div className="mt-3">
-            <Button onClick={() => setSecondModalOpen(true)}>
+            <Button
+              className="btn btn-success"
+              onClick={() => setSecondModalOpen(true)}
+            >
               <i className="fa fa-pencil fa-lg" /> Add a review
             </Button>
             <Modal isOpen={secondModalOpen}>
