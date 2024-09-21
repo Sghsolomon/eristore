@@ -50,3 +50,5 @@ const store = configureStore({
 const persistor = persistStore(store);
 
 export { store, persistor };
+
+console.log("state in store", store.getState());

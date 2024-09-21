@@ -94,38 +94,49 @@ export const validateLogin = createAsyncThunk(
   }
 );
 
-export const postFavorite = createAsyncThunk(
-  "user/postFavorite",
-  async (favorite) => {
-    const bearer = "Bearer " + localStorage.getItem("token");
+export const postOrder = createAsyncThunk("user/postOrder", async (order) => {
+  const bearer = "Bearer " + localStorage.getItem("token");
 
-    const response = await fetch(baseUrl + "user/favorites", {
+  // const response = await fetch(baseUrl + "user/orders", {
+  //   method: "POST",
+  //   body: JSON.stringify(order),
+  //   headers: {
+  //     Authorization: bearer,
+  //     "Content-Type": "application/json",
+  //   },
+  //   credentials: "same-origin",
+  // });
+
+  const response = await fetch(
+    baseUrl + "user/orders",
+
+    {
       method: "POST",
-      body: JSON.stringify({ campsiteId: favorite }),
       headers: {
         Authorization: bearer,
         "Content-Type": "application/json",
       },
       credentials: "same-origin",
-    });
-
-    if (!response.ok) {
-      return Promise.reject(response.status);
+      body: JSON.stringify(order),
     }
+  );
 
-    const data = await response.json();
-    return data;
+  if (!response.ok) {
+    return Promise.reject(response.status);
   }
-);
 
-export const deleteFavorite = createAsyncThunk(
-  "user/deleteFavorite",
-  async (favorite) => {
+  const data = await response.json();
+  return data;
+});
+
+export const deleteOrder = createAsyncThunk(
+  "user/deleteOrder",
+  async (order) => {
     const bearer = "Bearer " + localStorage.getItem("token");
 
-    const response = await fetch(baseUrl + "user/favorites", {
+    const response = await fetch(baseUrl + "user/orders", {
       method: "DELETE",
-      body: JSON.stringify({ campsiteId: favorite }),
+      body: JSON.stringify({ campsiteId: order }),
       headers: {
         Authorization: bearer,
         "Content-Type": "application/json",
@@ -143,10 +154,10 @@ export const deleteFavorite = createAsyncThunk(
 
 //redux store
 const initialState = {
+  orders: [],
   isLoading: false,
   isAuthenticated: localStorage.getItem("token") ? true : false,
   token: localStorage.getItem("token"),
-  favorites: [],
 };
 
 const userSlice = createSlice({
@@ -159,7 +170,7 @@ const userSlice = createSlice({
     },
     clearCurrentUser: (state) => {
       state.isAuthenticated = false;
-      state.favorites = [];
+      state.orders = [];
       state.isLoading = false;
       localStorage.removeItem("token");
     },
@@ -167,51 +178,53 @@ const userSlice = createSlice({
   extraReducers: {
     [userLogin.pending]: (state) => {
       state.isLoading = true;
-      state.favorites = [];
+      state.orders = [];
       localStorage.removeItem("token");
     },
     [userLogin.fulfilled]: (state, action) => {
       state.isLoading = false;
-      state.favorites = action.payload.favorites;
+      console.log("state.order", action.payload);
+      //state.orders = action.payload.orders;
       localStorage.setItem("token", action.payload.token);
       console.log(`Login successful for user with _id: ${action.payload.id}`);
     },
     [userLogin.rejected]: (state, action) => {
       state.isLoading = false;
-      state.favorites = [];
+      state.orders = [];
       localStorage.removeItem("token");
       alert("Login failed.", action.error.message);
     },
     [userLogout.fulfilled]: (state) => {
       state.isLoading = false;
-      state.favorites = [];
+      state.orders = [];
     },
     [userLogout.rejected]: (state) => {
       state.isLoading = false;
-      state.favorites = [];
+      state.orders = [];
     },
     [userSignup.pending]: (state) => {
       state.isLoading = true;
     },
     [userSignup.rejected]: (state) => {
       state.isLoading = false;
-      state.favorites = [];
+      state.orders = [];
     },
-    [postFavorite.rejected]: (state, action) => {
+    [postOrder.rejected]: (state, action) => {
       alert(
-        "Your favorite could not be saved\nError: " +
+        "Your order could not be saved\nError: " +
           (action.error ? action.error.message : "Fetch failed")
       );
     },
-    [postFavorite.fulfilled]: (state, action) => {
-      state.favorites.push(action.payload);
+    [postOrder.fulfilled]: (state, action) => {
+      console.log("post order", action.payload);
+      state.orders.push(action.payload);
     },
-    [deleteFavorite.fulfilled]: (state, action) => {
-      state.favorites = action.payload;
+    [deleteOrder.fulfilled]: (state, action) => {
+      state.orders = action.payload;
     },
-    [deleteFavorite.rejected]: (state, action) => {
+    [deleteOrder.rejected]: (state, action) => {
       alert(
-        "Your favorite could not be deleted\nError: " +
+        "Your order could not be deleted\nError: " +
           (action.error ? action.error.message : "Fetch failed")
       );
     },

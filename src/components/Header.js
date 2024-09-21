@@ -30,7 +30,7 @@ function Header() {
   const dispatch = useDispatch();
 
   const token = localStorage.getItem("token");
-  console.log("token", token);
+
   if (token) {
     const checkToken = setInterval(() => {
       const decodedToken = jwtDecode(token);
